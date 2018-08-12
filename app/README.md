@@ -18,9 +18,7 @@
 ## Getting AWS Credentials for our React Native app
 
 Before you work on your React Native app, you will need the AWS credentials and you are able to get them in 2 ways:
-
 A. Use `awsmobile cli`
-
 B. Go to **S3 buckets** with your hosted files from AWS Mobile Hub
 
 ### A. Using awsmobile CLI to get AWS Credentials
@@ -39,6 +37,8 @@ Download the `aws-export.js` from S3
 
 ## Setup & Run The React Native App
 
+[React Native application Source Code](http://bit.ly/aws-rn-appsync-cloud9)
+
 Open a **new AWS Cloud9 Terminal**, Unzip the folder under ```~/environment/rn``` directory. The following 3 commands will download our React Native source code and unzip into the ```/code``` directory of our React-Native docker environment.
 
 ```
@@ -50,7 +50,7 @@ wget http://bit.ly/aws-rn-appsync-cloud9 -O aws-rn-appsync-cloud9.zip
 
 unzip -o aws-rn-appsync-cloud9.zip                   
 ```
-Using AWS Cloud9 IDE, append these AppSync parameters to the `const awsmobile` in the `aws-exports.js` configuration file. Follow the below steps to retrieve your AppSync details.
+Using AWS Cloud9 IDE, append these AppSync parameters to the `const awsmobile` in the `aws-exports.js` configuration file. The correct `aws-exports.js` file has path of `/home/ec2-user/environment/rn/aws-exports.js` Follow the below steps to retrieve your AppSync details.
 
 ```
 'aws_appsync_graphqlEndpoint': 'https://xxx.appsync-api.ap-southeast-1.amazonaws.com/graphql',
@@ -62,7 +62,16 @@ To get your Appsync graphql endpoint:
 
 ![AWS AppSync API Key](images/appsync-highlight-api-url.png)
 
-Make sure you are **inside React Native Docker** environment, you can now run the following command:
+Run the following command to go back to your **React Native Docker** environment:
+```
+docker run -it --rm -p 19000:19000 -p 19001:19001 \
+-v "$PWD:/code" --user $UID \
+-v /home/ec2-user/.awsmobilejs:/home/ec2-user/.awsmobilejs \
+-e REACT_NATIVE_PACKAGER_HOSTNAME=`curl -s http://169.254.169.254/latest/meta-data/public-ipv4` \
+ reactnative-expo:latest bash
+```
+
+Once you are inside the React Native Docker environment, you can now run the following command:
 ```
 cd /code && yarn
 yarn start
@@ -100,8 +109,6 @@ Follow following instructions to get this application to work on your phone.
 ```
 1. Point your camera at the QR code that appears on your Docker terminal
 ```
-
-**Note**: if the app does not load properly in Expo, shake your phone and reload the app.
 
 ## Bonus Lab
 You will noticed that the ``UserTable`` is empty. Let's add some React Native code to push the User Info (ie: Email address, Cognito sub and userId) that we get from Cognito Session into the ``UserTable``. Additionally, let's create a new field, ``dietary_requirement`` for each user item. You will need to implement a ``Save`` button component for this.

@@ -72,7 +72,7 @@ Repeat **Steps 1-6** for the rest of the models below:
 
 ```
 ## Primary Partition Key = ChatId, Primary Sort Key = None
-## Add Index = EventId-index, Partition Key = EventId (String), Sort Key = None
+## Add Index = None
 type Chat {
 	ChatId: ID!
 	UserId: String!
@@ -131,8 +131,8 @@ In this workshop, we have changed a few resolvers in order to:
 
 Let's update the resolvers:
 
-4. On the right side of the panel, scroll down until you see "Mutation" section and look for `createUser`. Scroll to the right and click on "UserTable"
-5. Under **Configure the request mapping template**, replace the content with the following code:
+1. On the right side of the panel, scroll down until you see "Mutation" section and look for `createUser`. Scroll to the right and click on "UserTable"
+2. Under **Configure the request mapping template**, replace the content with the following code:
 
 ```
 {
@@ -158,8 +158,8 @@ Let's update the resolvers:
   },
 }
 ```
-6. Click **Save Resolver** on the top right.
-7. Now, repeat the **Steps 4-6** for the following mutations, leave the rest to default:
+3. Click **Save Resolver** on the top right.
+4. Now, repeat the **Steps 4-6** for the following mutations, leave the rest to default:
 
 **Mutation.createChat**
 
@@ -252,8 +252,9 @@ Let's update the resolvers:
 Once you are done with Mutations above. Now, let's proceed to the queries.
 
 1. On the right side of the panel, scroll down until you see "Query" section and look for `getChatByEventId`. 
-2. Under **Data source name**, pick **ChatTable** DynamoDB table as the data source to reolve to. 
-3. Under **Configure the request mapping template.**, replace the content with the following code:
+2. Scroll right and click on **Attach** button. 
+3. Under **Data source name**, pick **ChatTable** DynamoDB table as the data source to reolve to. 
+4. Under **Configure the request mapping template.**, replace the content with the following code:
 
 ```
 {
@@ -272,13 +273,13 @@ Once you are done with Mutations above. Now, let's proceed to the queries.
 }
 ```
 
-4. Under **response mapping template**, replace the content with the following code:
+5. Under **response mapping template**, replace the content with the following code:
 ```
 ## Pass back the result from DynamoDB. **
 $util.toJson($ctx.result.items)
 ```
 
-5. Now, repeat the **Steps 1-3** for the following queries, leave the rest to default:
+6. Now, repeat the **Steps 1-3** for the following queries, leave the rest to default:
 
 **Query.getEventUserJoinedByEventId**
 
