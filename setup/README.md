@@ -135,7 +135,7 @@ npm install -g awsmobile-cli && useradd -m -u 500 -s /bin/bash ec2-user
 ![AWS Cloud9 Docker Images](images/aws-cloud9-docker-images.jpg)
 
 11. Start the React Native Docker using this image with the command below.
-This step allows us to use AWS Cloud9 to be the IDE for our React Native project under the directory ```~/environment/rn``` while having a Docker container execute the React Native and Expo development server. The 2 TCP ports (19000, 190001) allows our mobile device to communicate with the React Native/Expo container.
+This step allows us to use AWS Cloud9 to be the IDE for our React Native project under the directory ```~/environment/rn``` while having a Docker container execute the React Native and Expo development server. The 2 TCP ports (19000, 19001) allows our mobile device to communicate with the React Native/Expo container.
 We also pre-create the ```.awsmobilejs``` directory as we will need it later for AWS Mobile CLI.
 ```
 cd ~/environment/rn
