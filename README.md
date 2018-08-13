@@ -33,7 +33,7 @@ Setup React Native development environment.
 Setup AWS Mobile Hub
 
 ## [Lab 2](appsync/)
-Setup AppSync
+Setup AWS AppSync
 
 ## [Lab 3](app/)
 Run your React Native App on your Mobile Device!
